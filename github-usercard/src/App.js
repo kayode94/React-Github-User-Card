@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react'
 import axios from 'axios'
-import UserCard from './UserCard'
+
 
 
 class App extends React.Component{
@@ -37,8 +37,26 @@ class App extends React.Component{
 
   render(){
     return(
-      <div>
-        <UserCard userData={this.state.userData} followers={this.state.followers}/>
+      <div className='App'>
+        <h1>GitHub UserCard</h1>
+        <div className='info'>
+          <img src = {this.state.userData.avatar_url}/>
+          <h1>Github Current User: {this.state.userData.name}</h1>
+          <h2>User Name: {this.state.userData.login}</h2>
+          <h4>My Bio: {this.state.userData.bio}</h4>
+        </div>
+        <div className='user-followers'>
+          <h3>Followers: {this.state.userData.followers}</h3>
+          <h3>Following: {this.state.userData.following}</h3>
+        </div>
+        <div className='follower-card'>
+          {this.state.followers.map((follower)=>(
+            <div className='follow-info'>
+              <img src={follower.avatar_url}/>
+              <h3>GitHub Follower: {follower.login}</h3>
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
